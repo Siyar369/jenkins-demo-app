@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        IMAGE_NAME = "AhmadMamnoon/jenkins-demo-app"
+        IMAGE_NAME = "ahmadmamnoon/jenkins-demo-app"
     }
     
     stages {
@@ -17,7 +17,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
                         dockerImage.push("${BUILD_NUMBER}")
                         dockerImage.push("latest")
                     }
